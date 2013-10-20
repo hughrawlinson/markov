@@ -9,22 +9,22 @@ var markov = {
 		}
 	},
 	write: function(length){
-		var outstring = '';
-		outstring = outstring + this.data[Math.floor(Math.random()*this.data.length)].key;
-		while(outstring.length < length){
-			outstring = outstring + this.data.filter(
+		var output = [];
+		output.push( this.data[Math.floor(Math.random()*this.data.length)].key );
+		while(output.length < length){
+			output.push(this.data.filter(
 					function(v) {
-						return v.key === outstring[outstring.length-1];
+						return v.key === output[output.length-1];
 					})[0]
 				.values[
 					Math.floor(
 						Math.random()*this.data.filter(
 							function(v) {
-								return v.key === outstring[outstring.length-1];
+								return v.key === output[output.length-1];
 							}
 						)[0].values.length
-					)];
+					)]);
 		}
-		return outstring;
+		return output;
 	}
 }
